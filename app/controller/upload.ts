@@ -15,8 +15,6 @@ export default class UploadController extends Controller {
 
     const writeStream = createWriteStream(filename);
 
-    stream.pipe(writeStream)
-
     try {
       //异步把文件流 写入
       await awaitWriteStream(stream.pipe(writeStream));
