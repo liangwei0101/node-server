@@ -10,6 +10,13 @@ export default (appInfo: EggAppInfo) => {
   // add your egg config in here
   config.middleware = [];
 
+  // json对象
+  config.photosFileList = [];
+  // 照片md5 文件
+  config.photosJsonFile = 'photoJsonFile.json';
+
+  config.photosJsonFilePath = '';
+
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,

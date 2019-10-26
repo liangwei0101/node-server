@@ -13,7 +13,7 @@ export default class UploadController extends Controller {
     const fullPath = stream.fields['path']
 
     const basePath = this.createFolder(stream, base, fullPath);
-    await ctx.service.common.fileAndFoldUtil.writeFile(stream, basePath);
+    await ctx.service.common.fileAndFoldUtil.writeStreamFile(stream, basePath);
 
     ctx.body = stream.filename
   }
