@@ -46,19 +46,21 @@ export default class FileAndFoldUtil extends Service {
   * @param stream 文件流
   * @param filePath 文件名称
   */
-  public async writeStreamFile(stream: FileStream, basePath: string) {
+  public async writeStreamFile(stream: FileStream, basePath: string) :Promise<boolean> {
+    let flag = true;
     try {
       //异步把文件流 写入
       const fileFullName = basePath + '/' + stream.filename;
       const writeStream = createWriteStream(fileFullName);
       await awaitWriteStream(stream.pipe(writeStream));
-      console.log("------------------------")
-      console.log(fileFullName)
     } catch (err) {
       //如果出现错误，关闭管道
       await sendToWormhole(stream);
+      flag = false;
       throw err;
     }
+
+    return flag;
   }
 
   /** 

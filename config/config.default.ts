@@ -11,7 +11,7 @@ export default (appInfo: EggAppInfo) => {
   config.middleware = [];
 
   // json对象
-  config.photosFileList = [];
+  config.photosFileList = {};
   // 照片md5 文件
   config.photosJsonFile = 'photoJsonFile.json';
 

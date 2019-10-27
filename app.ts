@@ -41,17 +41,26 @@ export default class FooBoot implements IBoot {
 
     const flag = existsSync(FileFullPath)
     if (!flag) {
-      writeFileSync(this.app.config.photosJsonFilePath, '');
+      // let aa = {};
+
+      // aa['test'] = 'liang';
+      // aa['tes1'] = '123456';
+      writeFileSync(this.app.config.photosJsonFilePath, {});
     }
 
     const jsonData = readFileSync(FileFullPath, 'utf-8');
-    this.app.config.photosFileList = JSON.parse(jsonData)
+    try {
+      this.app.config.photosFileList = JSON.parse(jsonData);
+    }
+    catch (e) {
+      this.app.config.photosFileList = {};
+    }
   }
 
   async beforeClose() {
     // Do some thing before app close.
-
-    // 写文件到框架中
+    console.log('=============================close')
+    // 写文件
     writeFileSync(this.app.config.photosJsonFilePath, this.app.config.photosFileList);
   }
 }
